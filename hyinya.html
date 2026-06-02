@@ -1,0 +1,53 @@
+<doctype html>
+    <html>
+<head>
+    <title>position</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #demo {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+    </head>
+    <body>
+        <button onclick="getLocation()">Get Location</button>
+        <p id="demo"></p>
+        <button onclick="vibration()">Vibrate</button>
+        <p id="demo1"></p>
+        <script>
+            var x = document.getElementById("demo");
+            var y = document.getElementById("demo1");
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function showPosition(position) {
+                x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+            }
+
+            function vibration() {
+                if (navigator.vibrate) {
+                    navigator.vibrate(2000); 
+                    y.innerHTML = "Device is vibrating...";
+                } else {
+                    y.innerHTML = "Vibration API is not supported by this browser.";
+                }
+            }
+            </script>
+    </body>
+</html>
