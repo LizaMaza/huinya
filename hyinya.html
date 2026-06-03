@@ -21,7 +21,7 @@
     <body>
         <button onclick="getLocation()">Get Location</button>
         <p id="demo"></p>
-        <button onclick="vibration()">Vibrate</button>
+        <button id="vibBtn" onclick="vibration()" ontouchstart="vibration()">vibration</button>
         <p id="demo1"></p>
         <script>
             var x = document.getElementById("demo");
@@ -41,8 +41,9 @@
             }
 
             function vibration() {
-                if (navigator.vibrate) {
-                    navigator.vibrate(2000); 
+                if ("vibrate" in navigator) {
+                    // pattern: vibrate 200ms, pause 100ms, vibrate 200ms
+                    navigator.vibrate([200,100,200]);
                     y.innerHTML = "Device is vibrating...";
                 } else {
                     y.innerHTML = "Vibration API is not supported by this browser.";
